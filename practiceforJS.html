@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>My First Project on Java Script</title>
+    <style type="text/css">
+    	.display{
+    		font-size: 4rem;
+    		padding-top: 100px;
+    	}
+    	.h1{
+    		font-size: 0.6em;
+    	}
+    	body{
+    		background-color: rgba(10,60,70,0.15);
+    	}
+    </style>
+  </head>
+  <body class="text-center mt-5">
+  	<h6 class="text-right mr-4 h1"><button class="btn btn-dark" id="theme">B</button></h6>
+  	<h1 class="display font-weight-bold">Score Board</h1>
+    <h1><span id="t1display">0</span> to <span id="t2display">0</span></h1>
+    <p>Playing to: <span id="max">5</span></p>
+    <input type="number" name="" class="mr-5">
+    <button class="mx-2 btn btn-info" id="t1">Team 1</button>
+    <button class="mx-2 btn btn-info" id="t2">Team 2</button>
+    <div>
+    	<button class="mx-2 my-4 btn btn-alert" id="reset">Reset</button>
+    </div>
+    <div class="container">
+    	<img class="my-5" src="https://images.unsplash.com/photo-1546608235-3310a2494cdf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" style="width:400px; ">
+    </div>
+    <h4 class="font-weight-bold">Press on the Button B in top right corner of the page for Black Theme</h4>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript"  >
+    	var butt = document.querySelector("#theme");
+		var body = document.querySelector("body");
+		var h1 = document.querySelectorAll("h1");
+		var p = document.querySelector("p");
+		var t1button = document.querySelector("#t1");
+		var t2button = document.querySelector("#t2");
+		var resetButton = document.querySelector("#reset");
+		var t1display = document.querySelector("#t1display");
+		var t2display = document.querySelector("#t2display");
+		var numinput = document.querySelector("input");
+		var score = document.querySelector("#max");
+		var t1score = 0;
+		var t2score = 0;
+		var gameover = false;
+		var winningscore = 5;
+		var ispurple = false;
+		butt.addEventListener("click",function(){
+			if(ispurple){
+				body.style.background = "white";
+		       for(var i=0; i<2 ;i++){
+		       	h1[i].style.color = "black";
+		       }
+				p.style.color = "black";
+			}
+			else {
+				body.style.background = "black";
+				 for(var i=0; i<2 ;i++){
+		       	h1[i].style.color = "white";
+		       }
+				p.style.color = "white";
+			}
+			ispurple = !ispurple;
+		});
+		t1button.addEventListener("click",function()
+		{
+			if(!gameover){
+				t1score++;
+				if(t1score == winningscore)
+				{
+					gameover = true;
+					t1display.style.color = "green";
+					alert("Team 1 Wins!");
+				}
+
+			}
+			t1display.textContent = t1score;
+		});
+		t2button.addEventListener("click",function()
+		{
+			if(!gameover){
+				t2score++;
+				if(t2score == winningscore)
+				{
+					gameover = true;
+					t2display.style.color = "green";
+					alert("Team 2 Wins!");
+				}
+
+			}
+			t2display.textContent = t2score;
+		});
+		resetButton.addEventListener("click",function() {
+			resets();
+		});
+		function resets(){
+			t1score = 0;
+			t2score = 0;
+			t1display.style.color = "black";
+			t2display.style.color = "black";
+			t1display.textContent = 0;
+			t2display.textContent = 0;
+			gameover = false;
+		}
+		numinput.addEventListener("change",function(){
+			score.textContent = this.value;
+			winningscore = this.value;
+			resets();
+		});
+
+    </script>
+  </body>
+</html>
